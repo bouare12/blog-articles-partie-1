@@ -5,7 +5,23 @@
 {% block body %}
 
     <p>
-        <H2>Bienvenue la page d'Acceuil</H2>
+        <H2>Bienvenue à la page d'Acceuil</H2>
     </p>
+    <div class="row">
+        {% for article in articles %}
+        <div class="row">
+            {% for article in articles %}
+            <div class="card col-md-4" style="width: 18rem;">
+                <p class="date">{{ article.createdAt | date("d/m/y")}}</p>
+                <img src="{{article.image}}" class="card-img-top" alt="{{ article.title }}">
+                <div class="card-body">
+                  <h5 class="card-title"> {{article.title }}</h5>
+                  <a href="#" class="btn btn-primary">En Savoir plus</a>
+                </div>
+              </div>
+            {% endfor %}
+        </div>    
+        {% endfor %}
+    </div>
 
 {% endblock %}
