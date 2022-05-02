@@ -6,10 +6,10 @@ kernel:
     resource: ../src/Kernel.php
     type: annotation
 
-hello:
-    path: hello
-    controller: App\Controller\helloController::hello
+# hello:
+#     path: hello
+#     controller: App\Controller\helloController::hello
 
-helloName:
-    path: hello/{name}
-    controller: App\Controller\helloController::helloName
+# helloName:
+#     path: hello/{name}
+#     controller: App\Controller\helloController::helloName
