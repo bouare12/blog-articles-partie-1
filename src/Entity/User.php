@@ -37,6 +37,8 @@ class User
     #[ORM\OneToMany(mappedBy: 'author', targetEntity: Article::class)]
     private $articles;
 
+    private $passwordConfirm;
+
     public function __construct()
     {
         $this->articles = new ArrayCollection();
@@ -104,6 +106,18 @@ class User
     public function setEmail(string $email): self
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    public function getpasswordConfirm(): ?string
+    {
+        return $this->passwordConfirm;
+    }
+
+    public function setpasswordConfirm(string $passwordConfirm): self
+    {
+        $this->passwordConfirm = $passwordConfirm;
 
         return $this;
     }
