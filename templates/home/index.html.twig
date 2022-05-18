@@ -30,7 +30,7 @@
                 {% for categorie in categories %}
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         <a href="{{path('show_Article', {'id': categorie.id})}}">{{ categorie.title }}
-                            <span class="badge bg-primary rounded-pill">{{ categorie.articles | length }} article(s)</span>
+                            <p class="badge bg-primary rounded-pill">{{ categorie.articles | length }} article(s)</p>
                         </a>
                     </li>
                 {% endfor %}

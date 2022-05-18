@@ -6,6 +6,7 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
@@ -19,15 +20,27 @@ class User
     #[ORM\Column(type: 'string', length: 255)]
     private $username;
 
+    /**
+     * @Assert\Length(min = 2, max = 50)
+     */
     #[ORM\Column(type: 'string', length: 255)]
     private $firstname;
 
+    /**
+     * @Assert\Length(min = 2, max = 50)
+     */
     #[ORM\Column(type: 'string', length: 255)]
     private $lastname;
 
+    /**
+     * @Assert\Length(min = 4, max = 50)
+     */
     #[ORM\Column(type: 'string', length: 255)]
     private $password;
 
+    /**
+     * @Assert\Email(message = "mail invalid")
+     */
     #[ORM\Column(type: 'string', length: 255)]
     private $email;
 
@@ -37,6 +50,9 @@ class User
     #[ORM\OneToMany(mappedBy: 'author', targetEntity: Article::class)]
     private $articles;
 
+    /**
+     * @Assert\EqualTo(propertyPath="password", message="Les deux mots de passe doivent être identiques")
+     */
     private $passwordConfirm;
 
     public function __construct()
