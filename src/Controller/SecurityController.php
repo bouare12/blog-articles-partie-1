@@ -34,13 +34,22 @@ class SecurityController extends AbstractController
 
             $Manager->persist($user);
             $Manager->flush();
-            return $this->redirectToRoute('app_home');
+            return $this->redirectToRoute('login');
             // dd($user);
         }
 
         return $this->render('security/index.html.twig', [
             'controller_name' => "Formualire d'inscription",
             'form' => $form->createView()
+        ]);
+    }
+
+    #[Route('/login', name: 'login')]
+    public function login(): Response
+    {
+        
+        return $this->render('security/login.html.twig', [
+            'controller_name' => "Bienvenue à la page de connexion"
         ]);
     }
 }
