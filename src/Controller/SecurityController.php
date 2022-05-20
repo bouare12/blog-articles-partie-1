@@ -9,11 +9,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class SecurityController extends AbstractController
 {
     #[Route('/register', name: 'app_register')]
-    public function register(Request $request, ManagerRegistry $managerRegistry): Response
+    public function register(Request $request, ManagerRegistry $managerRegistry, UserPasswordHasherInterface $hasherPass): Response
     {
         $Manager = $managerRegistry->getManager();
         $user = new User();
@@ -25,7 +26,12 @@ class SecurityController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
-            // traitement des données reçu du formulaire
+
+            // hash the password (based on the security.yaml config for the $user class)
+            $hashedPassword = $hasherPass->hashPassword($user, $user->getPassword());
+            
+            $user->setPassword($hashedPassword);
+
             $Manager->persist($user);
             $Manager->flush();
             return $this->redirectToRoute('app_home');
@@ -33,7 +39,7 @@ class SecurityController extends AbstractController
         }
 
         return $this->render('security/index.html.twig', [
-            'controller_name' => 'Inscription',
+            'controller_name' => "Formualire d'inscription",
             'form' => $form->createView()
         ]);
     }
