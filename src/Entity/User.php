@@ -56,6 +56,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'author', targetEntity: Article::class)]
     private $articles;
 
+    #[ORM\Column(type: 'json')]
     private $roles = [];
 
     /**
