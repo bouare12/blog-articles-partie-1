@@ -84,4 +84,25 @@ class ArticleRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function findArticlesByKeyword($keyword)
+    {
+        return $this->createQueryBuilder('a')
+            ->where('a.title LIKE :title')
+            ->setParameter('title', '%' . $keyword . '%')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findRecentArticlesByUser($userName, \DateTime $afterDate)
+    {
+        return $this->createQueryBuilder('a')
+            ->innerJoin('a.author', 'u')
+            ->where('u.username = :username')
+            ->andWhere('a.createdAt >= :createdAt')
+            ->setParameter('username', $userName)
+            ->setParameter('createdAt', $afterDate)
+            ->getQuery()
+            ->getResult();
+    }
 }

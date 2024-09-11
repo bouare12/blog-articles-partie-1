@@ -23,6 +23,13 @@ class AccountController extends AbstractController
                 $username = $user->getUsername();
 
                 $articlesFindByUser = $articleRepository->findArticlesByUsername($username);
+
+                /* $findArticlesByKeyword = $articleRepository->findArticlesByKeyword('Fem');
+                dd($findArticlesByKeyword); */
+
+                $date = new \DateTime('2024-09-10');
+                $findRecentArticlesByUser = $articleRepository->findRecentArticlesByUser($username,$date);
+                dd($findRecentArticlesByUser);
             }
         }
 
