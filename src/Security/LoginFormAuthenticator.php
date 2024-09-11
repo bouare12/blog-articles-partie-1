@@ -50,9 +50,9 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
         }
 
         // For example:
-        // return new RedirectResponse($this->urlGenerator->generate('app_login'));
+        return new RedirectResponse($this->urlGenerator->generate('app_account'));
         // throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
-        return new RedirectResponse($this->urlGenerator->generate('admin'));
+        //return new RedirectResponse($this->urlGenerator->generate('admin'));
     }
 
     protected function getLoginUrl(Request $request): string
