@@ -27,9 +27,9 @@ class AccountController extends AbstractController
                 /* $findArticlesByKeyword = $articleRepository->findArticlesByKeyword('Fem');
                 dd($findArticlesByKeyword); */
 
-                $date = new \DateTime('2024-09-10');
+                /* $date = new \DateTime('2024-09-10');
                 $findRecentArticlesByUser = $articleRepository->findRecentArticlesByUser($username,$date);
-                dd($findRecentArticlesByUser);
+                dd($findRecentArticlesByUser); */
             }
         }
 

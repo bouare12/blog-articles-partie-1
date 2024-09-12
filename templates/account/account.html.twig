@@ -7,6 +7,13 @@ endblock %} {% block body %}
     <h3>Hello {{ app.user.firstname }} {{ app.user.lastname }}</h3>
     <p>Bienvenue dans votre espace personnel</p>
   </div>
+  <div>
+    <ul>
+      <li>
+        <a href="{{ path('app_article_index') }}">Administrations des articles</a>
+      </li>
+    </ul>
+  </div>
   {% endif %}
   <div class="row">
     <div class="col-md-8">

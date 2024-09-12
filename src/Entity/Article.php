@@ -24,6 +24,8 @@ class Article
     #[ORM\Column(type: 'string', length: 255)]
     private $image;
 
+    private $imageFile;
+
     #[ORM\Column(type: 'datetime')]
     private $createdAt;
 
