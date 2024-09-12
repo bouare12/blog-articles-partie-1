@@ -27,4 +27,11 @@ class UploadFile extends AbstractController
         $file->move($this->getParameter('image_dir'), $filename);
         return $filename;
     }
+
+    // Update image
+    public function updateFile($file, $oldFile) {
+        $filename = $this->saveFile($file);
+        unlink($this->getParameter('image_dir').'/'.$oldFile);
+        return $filename;
+    }
 }
