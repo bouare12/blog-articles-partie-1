@@ -35,4 +35,9 @@ class UploadFile extends AbstractController
         unlink($this->getParameter('image_dir').'/'.$oldFile);
         return $filename;
     }
+
+    public function removeFile($urlFile) {
+        unlink($this->getParameter('image_dir').'/'.$urlFile);
+        return true;
+    }
 }

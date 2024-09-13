@@ -96,11 +96,17 @@ class ArticleController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_article_delete', methods: ['POST'])]
-    public function delete(Request $request, Article $article, EntityManagerInterface $entityManager): Response
+    public function delete(Request $request, Article $article, EntityManagerInterface $entityManager, UploadFile $uploadFile): Response
     {
         if ($this->isCsrfTokenValid('delete' . $article->getId(), $request->request->get('_token'))) {
+            
+            //récuperation de url de l'image
+            $urlImage = $article->getImage();
+
             $entityManager->remove($article);
             $entityManager->flush();
+
+            $uploadFile->removeFile($urlImage);
         }
 
         return $this->redirectToRoute('app_article_index', [], Response::HTTP_SEE_OTHER);
