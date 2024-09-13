@@ -23,7 +23,8 @@ class UploadFile extends AbstractController
     // sauvegarde de l'image
     public function saveFile($file)
     {
-        $filename = $file->getClientOriginalName();
+        $extension = $file->guessExtension();
+        $filename = $this->generateName(30).".".$extension;
         $file->move($this->getParameter('image_dir'), $filename);
         return $filename;
     }
